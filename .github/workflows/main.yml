@@ -1,7 +1,7 @@
 on: [push]
 
 env:
-  changed_files: $(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
+  changed_files: $(echo git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
