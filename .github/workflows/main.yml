@@ -1,5 +1,7 @@
 on: [push]
 
+env:
+  changed_files: git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
@@ -9,7 +11,7 @@ jobs:
       id: hello
       uses: jameshibbard/hello-world-javascript-action@v1
       with:
-        who-to-greet: echo "::git diff-tree --no-commit-id --name-only -r ${{ github.sha }}"
+        who-to-greet: ${{ env.changed_files }}
     # Use the output from the `hello` step
     - name: Get the output time
       run: echo "The time was ${{ steps.hello.outputs.time }}"
