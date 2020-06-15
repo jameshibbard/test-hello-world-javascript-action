@@ -9,8 +9,7 @@ jobs:
       id: hello
       uses: jameshibbard/hello-world-javascript-action@v1
       with:
-        who-to-greet: 'World'
+        who-to-greet: git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
     # Use the output from the `hello` step
     - name: Get the output time
       run: echo "The time was ${{ steps.hello.outputs.time }}"
-
