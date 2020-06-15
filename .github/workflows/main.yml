@@ -5,13 +5,11 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     steps:
-    - name: Set env
-      run: echo ::set-env name=CHANGED_FILES::$(echo git diff-tree --no-commit-id --name-only -r $GITHUB_SHA)
     - name: Hello world action step
       id: hello
       uses: jameshibbard/hello-world-javascript-action@v1
       with:
-        who-to-greet: ${{ env.changed_files }}
+        who-to-greet: World
     # Use the output from the `hello` step
     - name: Get the output time
       run: echo "The time was ${{ steps.hello.outputs.time }}"
